@@ -1,0 +1,26 @@
+<html>
+<head>
+    <style>
+        .bannerbox {
+            width:100%;
+            position:relative;
+            overflow:hidden;
+            height:180px;
+        }
+        .banner {
+            width:1920px; /*图片宽度*/
+            position:absolute;
+            left:50%;
+            margin-left:-960px; /*图片宽度的一半*/
+        }
+    </style>
+</head>
+<body>
+    <div class="bannerbox">
+        <div class="banner">
+            {% load static %}
+            <img src="{% static "images/banner.jpg" %}">
+        </div>
+    </div> 
+</body>
+</html>
