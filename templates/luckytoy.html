@@ -1,0 +1,33 @@
+<html>
+<head>
+  <style>
+    #luckytoybg {
+      position:fixed;
+      bottom:180px;
+      right:50px;
+      z-index:0;
+    }
+    #luckytoywords {
+      position:fixed;
+      bottom:256px;
+      right:90px;
+      z-index:10;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function changewords(){
+      $("#luckytoywords").html("後の祭り");
+    }
+  </script>
+
+</head>
+
+<body>
+  <div>
+    {% load static %}
+    <img src="{% static "images/luckytoy.png" %}" onclick="changewords()" id="luckytoybg">
+    <p id="luckytoywords">青菜に塩</p>
+  </div> 
+</body>
+</html>

@@ -7,7 +7,11 @@ from django.views.generic import TemplateView
 
 def home(request):
   context = {}
-  context['words'] = 'Shirai Kuroko'
-  context['bg_url'] = 'http://59.110.139.107:8080/images/109951162874623951.jpg'
+  context['words'] =  'こどものうた - 高橋優'
+
+  context['page_info'] = {}
+  context['page_info']['title'] = '異議あり!'
+  context['page_info']['toggle'] = 'home_page'
+
   return render(request, 'index.html', context)
 

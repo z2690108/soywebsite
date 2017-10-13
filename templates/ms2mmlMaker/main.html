@@ -1,0 +1,74 @@
+{% extends "base.html"%}
+
+{% block title %}ms2mmlMaker{% endblock %}
+
+{% block top %}
+
+{% include "banner.html"%}
+
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ words }}</h1>
+
+<form class="form" enctype="multipart/form-data" method="post" id="mmn_form">
+  <div class="form-group has-feedback col-xs-10 col-sm-8 col-md-8 col-lg-8">
+    <div class="input-group">
+      <input type="file" style="display:none" onchange="updateFileName()" id="mmn_file">
+      <div class="input-group-addon" onclick="selectFile()" style="cursor:pointer">
+        <span class="glyphicon glyphicon-folder-open"></span> Browse
+      </div>
+      <input class="form-control" type="text" placeholder="选择'.mmn'文件" id="cover_file_name" readonly>
+      <span class="glyphicon glyphicon-download-alt form-control-feedback col-lg-4" style="cursor:pointer; pointer-events:auto;"></span>
+    </div>
+  </div>
+  <button type="button" class="btn btn-default" data-dismiss="alert" aria-label="upload" onclick="uploadFile()" id="btn_upload">上传</button>
+</form>
+
+<div style="margin:20px;" id="ms2mml_ret"></div>
+
+<script type="text/javascript">
+  function updateFileName(){
+    var file_name = document.getElementById("mmn_file").files[0].name;
+    document.getElementById("cover_file_name").setAttribute("placeholder", file_name);
+  }
+
+  function selectFile(){
+    $('#mmn_file').click();
+  }
+
+  function uploadFile(){
+    var form_data = new FormData();
+    var file_info = document.getElementById("mmn_file").files[0];
+    form_data.append('mmn_file', file_info);
+
+    var options = {
+      url: "{% url 'ms2mmlMaker:upload_file' %}",
+      type: "POST",
+      data: form_data,
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        if(data.res_code == 200){
+          $("#ms2mml_ret").html(data);
+          $("#ms2mml_ret").html(''+
+            '<div class="panel panel-default">'+
+              '<div class="panel-heading">'+data.file_name+' 生成的乐谱</div>'+
+              '<div class="panel-body">'+data.ms2mml_output+'</div>'+
+            '</div>');
+        }else{
+          $("#ms2mml_ret").html(''+
+            '<div class="alert alert-danger alert-dismissible" role="alert">'+
+              '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+              '<strong>啊哈!</strong>'+data.error+
+            '</div>');
+        }
+      }
+    };
+    $.ajax(options);
+    return false; 
+  }
+</script>
+
+{% endblock %}
