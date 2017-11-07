@@ -28,21 +28,17 @@ def upload_file(request):
     res = {}
 
     html_file = 'ms2mmlMaker/main.html'
-    print "==========================iininini",request.POST
     if request.method == 'POST':
       mmn_file = request.FILES.get("mmn_file", None)
-      print "==========================", mmn_file
       if not mmn_file or not mmn_file.name.endswith('.mmn'):
         res['res_code'] = 100
         res['error'] = '请检查文格式及后缀!Σ(っ °Д °;)っ '
-        print "==========================aaaa", type(json.dumps(res)), json.dumps(res)
         return HttpResponse(json.dumps(res), content_type="application/json")
         # return render(request, html_file, { 'res': json.dumps(res), 'test': '123' })
 
       if mmn_file.size > 1048576:
         res['res_code'] = 101
         res['error'] = '文件太大啦!Σ(っ °Д °;)っ '
-        print "==========================aaaa", type(json.dumps(res)), json.dumps(res)
         return HttpResponse(json.dumps(res), content_type="application/json")
         # return render(request, html_file, { 'res': json.dumps(res), 'test': '123' })
       
@@ -58,6 +54,5 @@ def upload_file(request):
     else:
       res['res_code'] = 103
       res['error'] = 'Wrong Method:('
-    print "==========================aaaa", type(json.dumps(res)), json.dumps(res)
     return HttpResponse(json.dumps(res), content_type="application/json")
     # return render(request, html_file, { 'res': json.dumps(res), 'test': '123' })
