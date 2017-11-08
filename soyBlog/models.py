@@ -5,23 +5,6 @@ from django.db import models
 
 # Create your models here.
 
-# 文章
-class Post(models.Model):
-  # 标题
-  title = models.CharField(max_length=200, blank=False)
-  # 内容
-  content = models.TextField(blank=False)
-  # 作者
-  author = models.ForeignKey(User)
-  # 分类
-  category = models.ForeignKey(Category)
-  # 标签
-  tag = models.ForeignKey(Tag)
-  # 创建时间
-  creat_time = models.DateField(auto_now_add=True)
-  # 修改时间
-  modify_time = models.DateField(auto_now=True)
-
 # 用户信息
 class User(models.Model):
   # 用户id
@@ -59,18 +42,35 @@ class Tag(models.Model):
   # 修改时间
   modify_time = models.DateField(auto_now=True)
 
+# 文章
+class Post(models.Model):
+  # 标题
+  title = models.CharField(max_length=200, blank=False)
+  # 内容
+  content = models.TextField(blank=False)
+  # 作者
+  author = models.ForeignKey(User, related_name='author_posts', null=True)
+  # 分类
+  category = models.ForeignKey(Category, related_name='category_posts', null=True)
+  # 标签
+  tag = models.ManyToManyField(Tag, related_name='tag_posts')
+  # 创建时间
+  creat_time = models.DateField(auto_now_add=True)
+  # 修改时间
+  modify_time = models.DateField(auto_now=True)
+
 # 评论表
 class Comment(models.Model):
   # 文章
-  post = models.ForeignKey(Post)
+  post = models.ForeignKey(Post, related_name='post_comments', null=True)
   # 评论楼层
   position = models.IntegerField(blank=False)
   # 子楼层
   child_position = models.IntegerField(blank=False)
   # 被回复id
-  reply_user = models.ForeignKey(User)
+  reply_user = models.ForeignKey(User, related_name='replied_comments', null=True)
   # 评论用户
-  user = models.ForeignKey(User)
+  user = models.ForeignKey(User, related_name='user_comments', null=True)
   # 内容
   content = models.TextField(max_length=2000, blank=False)
   # 创建时间
