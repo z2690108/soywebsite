@@ -3,7 +3,11 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from math import ceil
+from markdown import markdown
 from .models import Post
+
+def md2html(md_string):
+
 
 def home(request, page=1):
   context = {}
@@ -18,6 +22,8 @@ def home(request, page=1):
 
   page = page if page > 0 else 1
   context['posts'] = Post.objects.all()[(page - 1) * post_perpage : post_perpage]
+  for post in context['posts']:
+    post.content = markdown(post.content)
   context['next_page'] = page + 1 if page < max_page else None
   context['prev_page'] = page - 1 if page > 1 else None
 
