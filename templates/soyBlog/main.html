@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+
+{% block title %}Soy Blog{% endblock %}
+
+{% block top %}
+
+{% include "banner.html"%}
+
+{% endblock %}
+
+{% block content %}
+
+{% for post in posts %}
+    <h2><small>{{ post.create_time|date:"M dS, Y" }}</small></h2>
+    <h2>{{ post.title }}</h2>
+    <h5>
+    {% for tag in post.tag.all %}
+      <span class="label label-default">{{ tag }}</span>
+    {% endfor %}
+    </h5>
+    <br>
+    </p>{{ post.content|linebreaksbr }}</p>
+    <hr />
+{% endfor %}
+
+<script type="text/javascript">
+</script>
+
+{% endblock %}

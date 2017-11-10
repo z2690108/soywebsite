@@ -10,37 +10,46 @@ class User(models.Model):
   # 用户id
   user_id = models.IntegerField(primary_key=True, blank=False)
   # 用户账号
-  login_id = models.IntegerField(db_index=True, unique=True, blank=False) 
+  login_id = models.CharField(db_index=True, unique=True, blank=False, max_length=20) 
   # 用户名称
-  name = models.IntegerField(blank=False)  
+  name = models.CharField(blank=False, max_length=36)  
   # 用户邮箱
   email = models.EmailField() 
   # 介绍
-  intro = models.TextField(max_length=2000)
+  intro = models.TextField(max_length=2000, null=True)
   # 签名
-  sign = models.TextField(max_length=200)
+  sign = models.TextField(max_length=200, null=True)
   # 创建时间
-  creat_time = models.DateField(auto_now_add=True)
+  create_time = models.DateField(auto_now_add=True)
   # 修改时间
   modify_time = models.DateField(auto_now=True)
+  
+  def __unicode__(self):  
+    return self.name
 
 # 分类
 class Category(models.Model):
   # 分类名
   name = models.CharField(max_length=200, blank=False)
   # 创建时间
-  creat_time = models.DateField(auto_now_add=True)
+  create_time = models.DateField(auto_now_add=True)
   # 修改时间
   modify_time = models.DateField(auto_now=True)
+
+  def __unicode__(self):  
+    return self.name
 
 # 标签
 class Tag(models.Model):
   # 分类名
   name = models.CharField(max_length=200, blank=False)
   # 创建时间
-  creat_time = models.DateField(auto_now_add=True)
+  create_time = models.DateField(auto_now_add=True)
   # 修改时间
   modify_time = models.DateField(auto_now=True)
+
+  def __unicode__(self):  
+    return self.name
 
 # 文章
 class Post(models.Model):
@@ -55,9 +64,12 @@ class Post(models.Model):
   # 标签
   tag = models.ManyToManyField(Tag, related_name='tag_posts')
   # 创建时间
-  creat_time = models.DateField(auto_now_add=True)
+  create_time = models.DateField(auto_now_add=True)
   # 修改时间
   modify_time = models.DateField(auto_now=True)
+
+  def __unicode__(self):  
+    return self.title
 
 # 评论表
 class Comment(models.Model):
@@ -74,9 +86,12 @@ class Comment(models.Model):
   # 内容
   content = models.TextField(max_length=2000, blank=False)
   # 创建时间
-  creat_time = models.DateField(auto_now_add=True)
+  create_time = models.DateField(auto_now_add=True)
   # 修改时间
   modify_time = models.DateField(auto_now=True)
+
+  def __unicode__(self):  
+    return self.content
 
 
 
