@@ -24,7 +24,7 @@
         );
 
         function getWord(){
-            return word_array[word_index++];
+            return word_array[word_index < word_array.length ? word_index++ : 0];
         }
 
         function speech(word){
