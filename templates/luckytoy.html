@@ -16,7 +16,7 @@
     </style>
 
     <script type="text/javascript">
-        var word_index = 0;
+        var word_index = -1;
         var word_array = new Array(
             "触らないで！",
             "いい加減にしろよ！",
@@ -24,7 +24,7 @@
         );
 
         function getWord(){
-            return word_array[word_index < word_array.length ? word_index++ : 0];
+            return word_array[word_index + 1 < word_array.length ? ++word_index : word_index=0];
         }
 
         function speech(word){
