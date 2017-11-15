@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <style type="text/css">
-    .navbar-under-banner{
-      position: absolute;
-      top: 180px;
-    }
-    .navbar-fixed-top-d{
-      position: fixed;
-      top: 0px;
-    }
-  </style>
+    <style type="text/css">
+        .navbar-under-banner{
+            position: absolute;
+            top: 180px;
+        }
+        .navbar-fixed-top-d{
+            position: fixed;
+            top: 0px;
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top navbar-under-banner" id="navbar-magnet">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation 导航栏</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">SOY BLOG</a>
-      </div>
-    
-      <div class="collapse navbar-collapse" id="nav-collapse-1">
-        <ul class="nav navbar-nav">
-          <li {% ifequal page_info.toggle 'home_page' %}class="active"{% endifequal %}><a href="{% url 'main' %}">HOME<span class="sr-only">(current)</span></a></li>
-          <li {% ifequal page_info.toggle 'ms2mml_maker' %}class="active"{% endifequal %}><a href="{% url 'ms2mmlMaker:main' %}">MML MAKER</a></li>
-          <li {% ifequal page_info.toggle 'blog_home' %}class="active"{% endifequal %}><a href="{% url 'soyBlog:main' %}">BLOG</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Login in <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Setting</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Setting</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-under-banner" id="navbar-magnet">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation 导航栏</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SOY BLOG</a>
+            </div>
+        
+            <div class="collapse navbar-collapse" id="nav-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li {% ifequal page_info.toggle 'home_page' %}class="active"{% endifequal %}><a href="{% url 'main' %}">HOME<span class="sr-only">(current)</span></a></li>
+                    <li {% ifequal page_info.toggle 'ms2mml_maker' %}class="active"{% endifequal %}><a href="{% url 'ms2mmlMaker:main' %}">MML MAKER</a></li>
+                    <li {% ifequal page_info.toggle 'blog_home' %}class="active"{% endifequal %}><a href="{% url 'soyBlog:main' %}">BLOG</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Login in <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Setting</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Setting</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
  
-  <script>
-    $(window).scroll(function() {
-      if ($(document).scrollTop() > 180) 
-      {$(".navbar-fixed-top").removeClass("navbar-under-banner");}
-      else 
-      {$(".navbar-fixed-top").addClass("navbar-under-banner");}
-    })
+    <script>
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 180) 
+            {$(".navbar-fixed-top").removeClass("navbar-under-banner");}
+            else 
+            {$(".navbar-fixed-top").addClass("navbar-under-banner");}
+        })
 </script>
 </body>
 </html>

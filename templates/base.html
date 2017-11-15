@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- See more detail in http://www.runoob.com/bootstrap/bootstrap-css-overview.html -->
-  <meta 
-    name="viewport" 
-    content="width=device-width, 
-            initial-scale=1.0, 
-            maximum-scale=1.0, 
-            user-scalable=no",
-    charset="utf-8">
+    <!-- See more detail in http://www.runoob.com/bootstrap/bootstrap-css-overview.html -->
+    <meta 
+        name="viewport" 
+        content="width=device-width, 
+                        initial-scale=1.0, 
+                        maximum-scale=1.0, 
+                        user-scalable=no",
+        charset="utf-8">
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-  <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/solarized_dark.min.css" rel="stylesheet">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/solarized_dark.min.css" rel="stylesheet">  
 
-  <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/fileinput.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/locales/LANG.js"></script> -->
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/fileinput.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/locales/LANG.js"></script> -->
 
-  {% load static %}
-  <script src="{% static 'csrf.js' %}"></script>
+    {% load static %}
+    <script src="{% static 'csrf.js' %}"></script>
 
-  {# Load the tag library #}
-  {% load bootstrap3 %}
-  
-  {# Load CSS and JavaScript #}
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
-  
-  {# Display django.contrib.messages as Bootstrap alerts #}
-  {% bootstrap_messages %}
+    {# Load the tag library #}
+    {% load bootstrap3 %}
+    
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
 
-  <title>{% block title %}頭隠して尻隠さず{% endblock %}--異議あり!!</title>
+    <title>{% block title %}頭隠して尻隠さず{% endblock %}--異議あり!!</title>
 
-  <style>
-    #content { padding-top : 70px; }
-    #music { position : fixed; 
-             bottom : 20px; 
-             right : 50px;
-           }
-  </style>
+    <style>
+        #content { padding-top : 70px; }
+        #music { position : fixed; 
+                         bottom : 20px; 
+                         right : 50px;
+                     }
+    </style>
 </head>
 
 <body>
@@ -50,13 +50,13 @@
 {% block top %}
 {% endblock %}
 
-<div class="container" id="content">
-{% block content %}
-{% endblock %}
-</div>
+    <div class="container" id="content">
+    {% block content %}
+    {% endblock %}
+    </div>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=220 src="//music.163.com/outchain/player?type=0&id=942880780&auto=0&height=430" id=music></iframe>
-
+<!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=220 src="//music.163.com/outchain/player?type=0&id=942880780&auto=0&height=430" id=music></iframe>
+ -->
 </body>
 
 </html>
