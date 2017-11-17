@@ -29,3 +29,23 @@ def home(request, page=1):
   context['prev_page'] = page - 1 if page > 1 else None
 
   return render(request, 'soyBlog/main.html', context)
+
+def post(request, post_id):
+  context = {}
+
+  context['page_info'] = {}
+  context['page_info']['title'] = 'soy'
+  context['page_info']['toggle'] = 'blog_home'
+
+  cur_post = Post.objects.get(id=post_id)
+  prev_post = Post.objects.filter(id__lt=post_id).order_by('-id')[:1] or None
+  next_post = Post.objects.filter(id__gt=post_id).order_by('id')[:1] or None
+
+  cur_post.content = safe_markdown(cur_post.content)
+
+  context['post'] = cur_post
+  context['page_info']['title'] = cur_post.title
+  context['prev_post'] = prev_post
+  context['next_post'] = next_post
+
+  return render(request, 'soyBlog/post.html', context)

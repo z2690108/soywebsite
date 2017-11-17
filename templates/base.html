@@ -34,15 +34,20 @@
     <title>{% block title %}頭隠して尻隠さず{% endblock %}--異議あり!!</title>
 
     <style>
-        #content { padding-top : 70px; }
+        #content { padding: 70px 50px 75px 50px;
+                   background-color: #FFFFFF;
+                   overflow: hide;
+                 }
         #music { position : fixed; 
                          bottom : 20px; 
                          right : 50px;
                      }
+        #background { background-image : url("http://2.pic.9ht.com/up/2016-8/20168101604.jpg");
+                   }
     </style>
 </head>
 
-<body>
+<body id=background>
 {% include 'navbar.html' %}
 
 {% include 'luckytoy.html' %}
