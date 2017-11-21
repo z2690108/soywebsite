@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', soyBlog_views.home, name='main'),
     url(r'^/(?P<page>[0-9]+)$', soyBlog_views.home, name='main'),
     url(r'^/post/(?P<post_id>[0-9]+)$', soyBlog_views.post, name='post'),
+    url(r'^/archives$', soyBlog_views.archives, name='archives'),
 ]

@@ -30,6 +30,7 @@
                     <li {% ifequal page_info.toggle 'home_page' %}class="active"{% endifequal %}><a href="{% url 'main' %}">HOME<span class="sr-only">(current)</span></a></li>
                     <li {% ifequal page_info.toggle 'ms2mml_maker' %}class="active"{% endifequal %}><a href="{% url 'ms2mmlMaker:main' %}">MML MAKER</a></li>
                     <li {% ifequal page_info.toggle 'blog_home' %}class="active"{% endifequal %}><a href="{% url 'soyBlog:main' %}">BLOG</a></li>
+                    <li {% ifequal page_info.toggle 'blog_archives' %}class="active"{% endifequal %}><a href="{% url 'soyBlog:archives' %}">ARCHIVES</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

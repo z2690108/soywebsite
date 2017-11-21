@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from math import ceil
 from mistune import markdown
+from collections import defaultdict
 from .models import Post
 
 def safe_markdown(md_string):
@@ -49,23 +50,19 @@ def post(request, post_id):
 
   return render(request, 'soyBlog/post.html', context)
 
-def archives(request, post_id):
+def archives(request):
   context = {}
 
   context['page_info'] = {}
   context['page_info']['title'] = 'Archives'
   context['page_info']['toggle'] = 'blog_archives'
 
-  cur_post = Post.objects.get(id=post_id)
-  prev_post = Post.objects.filter(id__lt=post_id).order_by('-id')[:1] or None
-  next_post = Post.objects.filter(id__gt=post_id).order_by('id')[:1] or None
+  posts = Post.objects.order_by('-id')
 
-  cur_post.content = safe_markdown(cur_post.content)
-
-  context['post'] = cur_post
-  context['page_info']['title'] = cur_post.title
-  context['prev_post'] = prev_post
-  context['next_post'] = next_post
+  posts_by_year = defaultdict(list)
+  for post in posts:
+    posts_by_year[post.create_time.year].append(post)
+  context['posts_year'] = sorted(posts_by_year.items(), reverse = True)
 
   return render(request, 'soyBlog/post.html', context)
 
