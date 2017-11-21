@@ -11,7 +11,7 @@ import json
 from django.http import HttpResponse  
 
 page_info = {
-          'title':'冒险岛2乐谱制作器-ms2mmlMaker',
+          'title':'冒险岛2乐谱制作器',
           'toggle':'ms2mml_maker',
         }
 
