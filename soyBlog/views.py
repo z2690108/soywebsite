@@ -64,7 +64,7 @@ def archives(request):
     posts_by_year[post.create_time.year].append(post)
   context['posts_year'] = sorted(posts_by_year.items(), reverse = True)
 
-  return render(request, 'soyBlog/post.html', context)
+  return render(request, 'soyBlog/archives.html', context)
 
 def getAllCategory(request, post_id):
   context = {}
