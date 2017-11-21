@@ -11,19 +11,28 @@
 {% block content %}
 
 {% for post in posts %}
-    <h2><small>{{ post.create_time|date:"M dS, Y" }}</small></h2>
-    <h2>
-        <a href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a>
-    </h2>
-    <h5>
-    {% for tag in post.tag.all %}
-      <span class="label label-default">{{ tag }}</span>
-    {% endfor %}
-    </h5>
-    <br>
-    </p>{{ post.content }}</p>
-    <hr />
+<h2><small>{{ post.create_time|date:"M dS, Y" }}</small></h2>
+<h2>
+    <a href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a>
+</h2>
+<h5>
+{% for tag in post.tag.all %}
+  <span class="label label-default">{{ tag }}</span>
 {% endfor %}
+</h5>
+<br>
+</p>{{ post.content }}</p>
+<hr />
+{% endfor %}
+
+<ul class="pager">
+    {% if prev_page %}
+    <li class="previous"><a href="{% url 'soyBlog:main' page=prev_page %}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Newer</a></li>
+    {% endif %}
+    {% if next_page %}
+    <li class="next"><a href="{% url 'soyBlog:main' page=next_page %}">Older <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></li>
+    {% endif %}
+</ul>
 
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
