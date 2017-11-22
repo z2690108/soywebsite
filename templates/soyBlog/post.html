@@ -10,8 +10,8 @@
 
 {% block content %}
 
-<p class="post-pub-time">{{ post.create_time|date:"M dS, Y" }}</p>
-<p class="post-title">{{ post.title }}</p>
+<h3 class="post-pub-time">{{ post.create_time|date:"M dS, Y" }}</h3>
+<h2 class="post-title"><b>{{ post.title }}</b></h2>
 <h5>
 {% for tag in post.tag.all %}
   <span class="label label-default">{{ tag }}</span>
