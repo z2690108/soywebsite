@@ -29,3 +29,7 @@ a.post-title:hover, a.post-title:active {
     color: #afafaf; 
     font-style:italic;
 }
+
+.post-tags {
+    padding: 0px 0px 0px 28px
+}
