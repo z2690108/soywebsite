@@ -7,12 +7,24 @@ body {
     background: #fff;
 }
 
-a.post-title:link a.post-title:visited {
+.post-title {
+    font-size: 30px;
+    font-weight:bold;
+    color: #000000; 
+}
+
+a.post-title:link, a.post-title:visited {
     color: #000000;
-    text-decoration: none;
+    text-decoration:none;
 }
 
 a.post-title:hover, a.post-title:active {
     color: #6d6d6d;
     text-decoration:none;
+}
+
+.post-pub-time {
+    font-size: 20px;
+    font-weight:normal;
+    color: #afafaf;   
 }
