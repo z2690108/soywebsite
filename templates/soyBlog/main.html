@@ -12,7 +12,7 @@
 
 {% for post in posts %}
 <h3 class="post-pub-time">{{ post.create_time|date:"M dS, Y" }}</h3>
-<h2><a class="post-title" href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a></h2>
+<h2><a class="post-title" style="color=ffffff"  href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a></h2>
 <h5>
 {% for tag in post.tag.all %}
     <span class="label label-default">{{ tag }}</span>
