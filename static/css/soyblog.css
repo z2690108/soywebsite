@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,"Hiragino Sans GB","Microsoft YaHei", "WenQuanYi Micro Hei",sans-serif;
+    color: #333;
+    background: #fff;
+}
+
+a.post-title:link a.post-title:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.post-title:hover, a.post-title:active {
+    color: #6d6d6d;
+    text-decoration:none;
+}
