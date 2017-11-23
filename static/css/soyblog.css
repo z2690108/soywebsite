@@ -27,9 +27,9 @@ a.post-title:hover, a.post-title:active {
 
 .post-pub-year {
     color: #afafaf; 
-    font-style:italic;
+    font-style: italic;
 }
 
 .post-tags {
-    padding: 0px 0px 0px 28px
+    padding: 0px 0px 0px 28px;
 }
