@@ -11,7 +11,7 @@
 {% block content %}
 
 {% for post in posts %}
-<h3 class="post-pub-time">{{ post.create_time|date:"M dS, Y" }}</h3>
+<h4 class="post-pub-time">{{ post.create_time|date:"M dS, Y" }}</h4>
 <h2><a class="post-title" style="color=ffffff"  href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a></h2>
 <div class="post-tags">
 <h5>

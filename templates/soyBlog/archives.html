@@ -14,14 +14,16 @@
     <h1 class="post-pub-year">{{ posts.0 }}</h1>
     <hr />
     {% for post in posts.1 %}
-        <h3 class="post-pub-time">{{ post.create_time|date:"M dS" }}</h3>
-        <h2><a class="post-title" href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a><h2>
-        <div class="post-tags">
-        <h5>
-        {% for tag in post.tag.all %}
-          <span class="label label-default">{{ tag }}</span>
-        {% endfor %}
-        </h5>
+        <div class="archives-item">
+            <h4 class="post-pub-time">{{ post.create_time|date:"M dS" }}</h4>
+            <h2><a class="post-title" href="{% url 'soyBlog:post' post_id=post.id %}"><b>{{ post.title }}</b></a><h2>
+            <div class="post-tags">
+            <h5>
+            {% for tag in post.tag.all %}
+              <span class="label label-default">{{ tag }}</span>
+            {% endfor %}
+            </h5>
+            </div>
         </div>
     {% endfor %}
     <br>

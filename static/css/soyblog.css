@@ -7,6 +7,69 @@ body {
     background: #fff;
 }
 
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.music-player { 
+    position: fixed; 
+    bottom: 20px; 
+    right: 50px;
+}
+
+.background { 
+    background-image: url("http://2.pic.9ht.com/up/2016-8/20168101604.jpg");
+}
+
+.content {
+    padding: 20px;
+}
+
+.main-content {
+    padding: 70px 50px 75px 50px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.main {
+    float: left;
+    width: 100%;
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
+    padding-right: 300px; /*equal sidebar's width*/
+}
+
+.sidebar {
+    float: left;
+    width: 300px;
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
+    margin-left: -300px; /*equal sidebar's width*/
+    background: #222222; 
+}
+
+.light-color-prim{
+    color: #afafaf; 
+}
+
+.light-color{
+    color: #646464; 
+}
+
+.dark-color-prim{
+    color: #565656;
+}
+
+.dark-color{
+    color: #848484;
+}
+
 .post-title {
     color: #565656; 
 }
@@ -28,8 +91,17 @@ a.post-title:hover, a.post-title:active {
 .post-pub-year {
     color: #afafaf; 
     font-style: italic;
+    font-weight: 500;
 }
 
 .post-tags {
-    padding: 0px 0px 0px 28px;
+    padding: 0px 0px 0px 5px;
 }
+
+.archives-item {
+    padding: 0px 0px 20px 20px;
+}
+
+
+
+

@@ -18,9 +18,10 @@
     <script type="text/javascript">
         var word_index = -1;
         var word_array = new Array(
-            "触らないで！",
-            "いい加減にしろよ！",
-            "うるさい！",
+            "嗯嗯我懂了。",
+            "了解！",
+            "嗯嗯嗯！",
+            "我懂你意思。",
         );
 
         function getWord(){
@@ -29,7 +30,8 @@
 
         function speech(word){
             var msg = new SpeechSynthesisUtterance(word);
-            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == 'Google 日本語'; })[0];
+            // msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == 'Google 日本語'; })[0];
+            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == 'Google 普通话（中国大陆）'; })[0]
             speechSynthesis.speak(msg);
         }
 
