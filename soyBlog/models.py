@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
-
 # 用户信息
 class User(models.Model):
     # 用户id

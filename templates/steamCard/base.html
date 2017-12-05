@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta 
+        name="viewport" 
+        content="width=device-width, 
+                        initial-scale=1.0, 
+                        maximum-scale=1.0, 
+                        user-scalable=no",
+        charset="utf-8">
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    {% load static %}
+    <script src="{% static 'csrf.js' %}"></script>
+
+    <link href="{% static 'css/steam.css' %}" media="all" rel="stylesheet" type="text/css">
+    
+    <title>Steam Card -- Make Steam, Not War</title>
+
+</head>
+
+<body>
+    <div class="steam_card_main">
+        <div class="actual_persona_name">
+            {{ info.basic_info.persona_name }}
+        </div>
+        <div class="playerAvatar">
+            <img src="{{ info.basic_info.avatar_m }}">
+        </div>
+    </div>
+</body>
+
+</html>
