@@ -16,9 +16,8 @@ from .models import SteamKey
 
 class SteamApi:
     def __init__(self, steam_id):
-        # 76561198096800938
         self.steam_id = steam_id
-        self.key = SteamKey.objects.get(id = steam_id).key
+        self.key = SteamKey.objects.get(admin_id = 1).api_key
 
         self.profiles_url = SteamUrlTools.getProfileUrl(self.steam_id,)
 
@@ -37,17 +36,18 @@ class SteamApi:
         try:
             param = {'key':self.key, 'steamids':self.steam_id}
             r = requests.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/', params = param)
-            player = r.json()['response']['players']
+            players = r.json()['response']['players']
+            player = players[0] if len(players) else {}
 
             info = {}
             if player:
-                info.steam_id           = player.steamid if steamid in player else None
-                info.persona_name       = player.personaname if personaname in player else None
-                info.avatar             = player.avatar if avatar in player else None
-                info.avatar_m           = player.avatarmedium if avatarmedium in player else None
-                info.avatar_f           = player.avatarfull if avatarfull in player else None
-                info.visibility_state   = player.communityvisibilitystate if communityvisibilitystate in player else None
-
+                info['steam_id']            = player['steamid'] if 'steamid' in player else None
+                info['persona_name']        = player['personaname'] if 'personaname' in player else None
+                info['avatar']              = player['avatar'] if 'avatar' in player else None
+                info['avatar_m']            = player['avatarmedium'] if 'avatarmedium' in player else None
+                info['avatar_f']            = player['avatarfull'] if 'avatarfull' in player else None
+                info['visibility_state']    = player['communityvisibilitystate'] if 'communityvisibilitystate' in player else None
+            
             return info
 
         except Exception, e:
@@ -83,18 +83,18 @@ class SteamApi:
             badges_img_list     = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge "]//img/@src')
 
             info = {}
-            info.level = level[0] if len(level) else None
-            info.desc  = desc[0] if len(desc) else (desc_noexpand[0] if len(desc_noexpand) else None)
-            info.badges_count = badges_count[0].strip() if len(badges_count) else None
-            info.badges_link_total = badges_link_total[0] if len(badges_link_total) else None
+            info['level'] = level[0] if len(level) else None
+            info['desc']  = desc[0] if len(desc) else (desc_noexpand[0] if len(desc_noexpand) else None)
+            info['badges_count'] = badges_count[0].strip() if len(badges_count) else None
+            info['badges_link_total'] = badges_link_total[0] if len(badges_link_total) else None
 
-            info.badges = []
+            info['badges'] = []
             badge = {}
             for i in xrange(len(badges_desc_list)):
                 badge['desc'] = badges_desc_list[i] if i in badges_desc_list else None
                 badge['link'] = badges_link_list[i] if i in badges_link_list else None
                 badge['img']  = badges_img_list[i] if i in badges_img_list else None
-                info.badges.append(badge)
+                info['badges'].append(badge)
 
         except Exception, e:
             print 'Get profile info from steam failed. steamid: ', self.steam_id, ' Exception: ', e

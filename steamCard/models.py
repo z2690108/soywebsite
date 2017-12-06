@@ -7,7 +7,7 @@ class SteamKey(models.Model):
     # id
     admin_id = models.IntegerField(primary_key=True, blank=False)
     # steam api key
-    key = models.CharField(blank=False, max_length=36)  
+    api_key = models.CharField(blank=False, max_length=36)  
     # remark
     remark = models.CharField(blank=False, max_length=36)  
     

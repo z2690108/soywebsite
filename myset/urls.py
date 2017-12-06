@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from myset import views as myset_views
 from soyBlog import views as soyBlog_views
+from steamCard import views as steamCard_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,5 +25,6 @@ urlpatterns = [
     
     url(r'^ms2mmlMaker', include('ms2mmlMaker.urls', namespace='ms2mmlMaker')),
     url(r'^blog', include('soyBlog.urls', namespace='soyBlog')),
+    url(r'^steamCard', include('steamCard.urls', namespace='steamCard')),
     
 ]

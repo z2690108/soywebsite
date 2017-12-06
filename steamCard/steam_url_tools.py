@@ -5,21 +5,21 @@ import requests
 
 class SteamUrlTools:
     @classmethod
-    def getProfileUrl(steam_id):
+    def getProfileUrl(cls, steam_id):
         return "http://steamcommunity.com/profiles/%s" % (steam_id,)
 
     @classmethod
-    def getStatUrl(steam_id, app_id):
+    def getStatUrl(cls, steam_id, app_id):
         return "http://steamcommunity.com/profiles/%s/stats/%d" % (steam_id, app_id)
 
     @classmethod
-    def getStoreUrl(app_id):
+    def getStoreUrl(cls, app_id):
         return "http://store.steampowered.com/app/%d" % (app_id)
 
     @classmethod
-    def getAppImgUrl(app_id, img_url):
+    def getAppImgUrl(cls, app_id, img_url):
         return "http://media.steampowered.com/steamcommunity/public/images/apps/%d/%s.jpg" % (app_id, img_url)
 
     @classmethod
-    def getAppLogoUrl(app_id, logo_url):
+    def getAppLogoUrl(cls, app_id, logo_url):
         return "http://media.steampowered.com/steamcommunity/public/images/apps/%d/%s.jpg" % (app_id, logo_url)
