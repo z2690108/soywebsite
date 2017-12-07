@@ -21,11 +21,22 @@
 
 <body>
     <div class="steam_card_main">
-        <div class="actual_persona_name">
-            {{ info.basic_info.persona_name }}
-        </div>
-        <div class="playerAvatar">
-            <img src="{{ info.basic_info.avatar_m }}">
+        <div class="steam_card_background">
+            <div class="player_avatar">
+                <img src="{{ info.basic_info.avatar_m }}">
+            </div>
+            <div>
+                <div class="actual_persona_name">
+                    {{ info.basic_info.persona_name }}
+                </div>
+                <div class="persona_level">
+                    <div class="friendPlayerLevel lvl_{{ info.profile_info.frame_level }}">
+                        <span class="friendPlayerLevelNum">{{ info.profile_info.level }}</span>
+                    </div>
+                     级
+                </div>
+            </div>
+
         </div>
     </div>
 </body>

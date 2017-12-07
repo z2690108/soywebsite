@@ -84,17 +84,28 @@ class SteamApi:
 
             info = {}
             info['level'] = level[0] if len(level) else None
-            info['desc']  = desc[0] if len(desc) else (desc_noexpand[0] if len(desc_noexpand) else None)
+
+            def getFrameLevel(level_str):
+                if level_str and level_str.isdigit():
+                    level = int(level_str)
+                    return min(level / 10 * 10 if level < 100 else level / 100 * 100, 3000) if level > 0 else 0
+                else:
+                    return 0
+
+            info['frame_level'] = getFrameLevel(info['level'])
+            info['desc']  = desc[0].strip() if len(desc) else (desc_noexpand[0].strip() if len(desc_noexpand) else None)
             info['badges_count'] = badges_count[0].strip() if len(badges_count) else None
             info['badges_link_total'] = badges_link_total[0] if len(badges_link_total) else None
 
             info['badges'] = []
             badge = {}
             for i in xrange(len(badges_desc_list)):
-                badge['desc'] = badges_desc_list[i] if i in badges_desc_list else None
-                badge['link'] = badges_link_list[i] if i in badges_link_list else None
-                badge['img']  = badges_img_list[i] if i in badges_img_list else None
+                badge['desc'] = badges_desc_list[i] if i < len(badges_desc_list) else None
+                badge['link'] = badges_link_list[i] if i < len(badges_link_list) else None
+                badge['img']  = badges_img_list[i] if i < len(badges_img_list) else None
                 info['badges'].append(badge)
+
+            return info
 
         except Exception, e:
             print 'Get profile info from steam failed. steamid: ', self.steam_id, ' Exception: ', e

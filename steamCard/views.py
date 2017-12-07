@@ -13,4 +13,7 @@ def getSteamCard(request):
     m_card = SteamCard(steam_id)
     context['info'] = m_card.getSteamCard()
 
+    print "card info: "
+    print context['info']
+
   return render(request, 'steamCard/base.html', context)
