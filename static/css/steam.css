@@ -17,8 +17,8 @@
 }
 
 .player_avatar {
-    width: 42px;
-    height: 42px;
+    width: 60px;
+    height: 60px;
     position: relative;
     border-radius: 2px;
     padding: 1px;
@@ -27,15 +27,15 @@
 }
 
 .player_avatar img {
-    width: 42px;
-    height: 42px;
+    width: 60px;
+    height: 60px;
     padding: 1px;
     border-radius: 0;
     border: none;
 }
 
-.actual_persona_name {
-    line-height: 40px;
+.persona_name {
+    line-height: 28px;
     font-size: 24px;
     color: #ffffff;
     text-overflow: ellipsis;
@@ -43,13 +43,16 @@
     overflow: hidden;
     font-family: "Motiva Sans", Sans-serif;
     font-weight: 200;
+    padding-bottom: 6px;
+    display: block;
 }
 
 .persona_level {
-    line-height: 40px;
+    line-height: 28px;
     margin-bottom: 13px;
     font-size: 18px;
     color: #ffffff;
+    display: inline;
 }
 
 .friendPlayerLevel {
@@ -298,25 +301,54 @@
     background-position: 0 -288px;
 }
 
+.profile_header_summary {
+    padding: 4px 2px 0px 2px;
+}
+
 .profile_summary {
-    line-height: 18px;
+    line-height: 17px;
     font-size: 13px;
     color: #898989;
-    height: 57px;
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: hidden;
     margin-bottom: 8px;
+    max-height: 51px;
+    display: block
 }
 
-.profile_header_badge {
-    border: 1px solid #212121;
-    border-radius: 3px;
-    background-color: #222223;
-    height: 70px;
-    box-shadow: 1px 1px 0 #343944;
-    margin-bottom: 13px;
+.profile_count_link_preview {
+    overflow: hidden;
+    line-height: 44px;
+    background-color: #00000080;
+    padding: 4px 7px 4px 7px;
 }
+
+.profile_badges_badge {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 6px;
+    line-height: 40px;
+}
+
+.profile_badges_badge img, .profile_badges_badge span {
+    width: 40px;
+    height: 40px;
+}
+
+.profile_badges_badge a {
+    text-decoration: blink;
+}
+
+.profile_badges_badge span {
+    line-height: 40px;
+    font-size: 26px;
+    color: #ffffff80;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: 200;
+}
+
 
 /* Avatars */
 

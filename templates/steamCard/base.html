@@ -25,15 +25,44 @@
             <div class="player_avatar">
                 <img src="{{ info.basic_info.avatar_m }}">
             </div>
-            <div>
-                <div class="actual_persona_name">
-                    {{ info.basic_info.persona_name }}
+            <div class="persona_info">
+                <div class="persona_name">
+                    <span class="actual_persona_name">{{ info.basic_info.persona_name }}</span>
                 </div>
                 <div class="persona_level">
                     <div class="friendPlayerLevel lvl_{{ info.profile_info.frame_level }}">
                         <span class="friendPlayerLevelNum">{{ info.profile_info.level }}</span>
                     </div>
                      级
+                </div>
+                <div class="profile_header_summary">
+                    <span class="profile_summary">{{ info.profile_info.desc | linebreaksbr }}</span>
+                </div>
+                <div class="profile_count_link_preview">
+                    {% for badge in info.profile_info.badges %}
+                    <div class="profile_badges_badge" title="{{ badge.desc }}">
+                        <a href="{{ badge.link }}">
+                            <img src="{{ badge.img }}"></img>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    {% if info.profile_info.undisplay_badges_count > 0 %}
+                    <div class="profile_badges_badge">
+                        <a href="{{ info.profile_info.badges_link_total }}">
+                            {% if info.profile_info.undisplay_badges_count >= 100 %}
+                            <span style="font-size: 24px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% elif info.profile_info.undisplay_badges_count >= 1000 %}
+                            <span style="font-size: 20px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% elif info.profile_info.undisplay_badges_count >= 10000 %}
+                            <span style="font-size: 16px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% elif info.profile_info.undisplay_badges_count >= 100000 %}
+                            <span style="font-size: 14px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% else %}
+                            <span>+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 

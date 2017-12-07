@@ -73,17 +73,16 @@ class SteamApi:
             r = requests.get(self.profiles_url)
             tree = html.fromstring(r.text)
 
-            level               = tree.xpath('//div[@class="profile_header_badgeinfo_badge_area"]//span[@class="friendPlayerLevelNum"]/text()')
-            desc                = tree.xpath('//div[@class="profile_summary"]/text()')
-            desc_noexpand       = tree.xpath('//div[@class="profile_summary noexpand"]/text()')
-            badges_count        = tree.xpath('//div[@class="profile_badges"]//span[@class="profile_count_link_total"]/text()')
-            badges_link_total   = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_count_link ellipsis"]//@href')
-            badges_desc_list    = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge "]/@data-community-tooltip')
-            badges_link_list    = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge "]//@href')
-            badges_img_list     = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge "]//img/@src')
+            level_list              = tree.xpath('//div[@class="profile_header_badgeinfo_badge_area"]//span[@class="friendPlayerLevelNum"]/text()')
+            desc_list               = tree.xpath('//div[@class="profile_summary" or @class="profile_summary noexpand"]/text()')
+            badges_count_list       = tree.xpath('//div[@class="profile_badges"]//span[@class="profile_count_link_total"]/text()')
+            badges_link_total_list  = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_count_link ellipsis"]//@href')
+            badges_desc_list        = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge " or @class="profile_badges_badge last"]/@data-community-tooltip')
+            badges_link_list        = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge " or @class="profile_badges_badge last"]//@href')
+            badges_img_list         = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge " or @class="profile_badges_badge last"]//img/@src')
 
             info = {}
-            info['level'] = level[0] if len(level) else None
+            info['level'] = level_list[0] if len(level_list) else None
 
             def getFrameLevel(level_str):
                 if level_str and level_str.isdigit():
@@ -93,17 +92,23 @@ class SteamApi:
                     return 0
 
             info['frame_level'] = getFrameLevel(info['level'])
-            info['desc']  = desc[0].strip() if len(desc) else (desc_noexpand[0].strip() if len(desc_noexpand) else None)
-            info['badges_count'] = badges_count[0].strip() if len(badges_count) else None
-            info['badges_link_total'] = badges_link_total[0] if len(badges_link_total) else None
+            info['desc']  = '\n'.join(desc_list).strip() if len(desc_list) else []
+
+            badges_count_str = badges_count_list[0].strip() if len(badges_count_list) else ''
+            info['badges_count'] = int(badges_count_str) if badges_count_str.isdigit() else 0
+
+            info['badges_link_total'] = badges_link_total_list[0] if len(badges_link_total_list) else ''
 
             info['badges'] = []
-            badge = {}
             for i in xrange(len(badges_desc_list)):
-                badge['desc'] = badges_desc_list[i] if i < len(badges_desc_list) else None
-                badge['link'] = badges_link_list[i] if i < len(badges_link_list) else None
-                badge['img']  = badges_img_list[i] if i < len(badges_img_list) else None
+                badge = {}
+                badge['desc'] = badges_desc_list[i].replace('<br>', '').replace('<br />', '') if i < len(badges_desc_list) else ''
+                badge['link'] = badges_link_list[i] if i < len(badges_link_list) else ''
+                badge['img']  = badges_img_list[i] if i < len(badges_img_list) else ''
                 info['badges'].append(badge)
+
+            undisplay_badges_count = info['badges_count'] - len(info['badges'])
+            info['undisplay_badges_count'] = undisplay_badges_count if undisplay_badges_count > 0 else 0
 
             return info
 
