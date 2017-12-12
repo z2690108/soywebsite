@@ -15,9 +15,9 @@ from .steam_url_tools import SteamUrlTools
 from .steam_api import SteamApi
 
 class SteamCard:
-    def __init__(self, steam_id):
+    def __init__(self, steam_id, language="en"):
         self.steam_id = steam_id
-        self.steam_api = SteamApi(steam_id)
+        self.steam_api = SteamApi(steam_id, language)
 
     def getSteamCard(self, show_games=False, order_by_2week_games=True):
         try:

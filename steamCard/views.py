@@ -9,8 +9,9 @@ def getSteamCard(request):
   context = {}
   if request.method == "GET":
     steam_id = request.GET['id']
+    language = request.GET['lang'] if 'lang' in request.GET else 'en'
 
-    m_card = SteamCard(steam_id)
+    m_card = SteamCard(steam_id, language)
     context['info'] = m_card.getSteamCard()
 
     print "card info: "

@@ -1,5 +1,13 @@
+body {
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+a {
+    text-decoration: blink;
+}
+
 .steam_card_main {
-    cursor: pointer;
+    cursor: default;
     position: absolute;
     height: 160px;
     width: 280px;
@@ -9,11 +17,20 @@
     margin-top: -80px;
 }
 
-.steam_card_background {
+.steam_card_top {
+    overflow: hidden;
     background-image: url( 'http://community.edgecast.steamstatic.com/public/images/profile/profile_header_bg_texture.jpg' );
     padding: 8px 10px 10px 10px;
-    border-radius: 5px; 
+    border-radius: 5px 5px 0px 0px; 
     box-shadow: 2px 3px 11px 0px #292828;
+}
+
+.steam_card_bottom {
+    overflow: hidden;
+    background-color: #1d1d1d;
+    padding: 4px 10px 10px 10px; 
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 2px 3px 11px 0px #292828; 
 }
 
 .player_avatar {
@@ -41,7 +58,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-family: "Motiva Sans", Sans-serif;
+    font-family: "Open Sans", Sans-serif;
     font-weight: 200;
     padding-bottom: 6px;
     display: block;
@@ -51,6 +68,7 @@
     line-height: 28px;
     margin-bottom: 13px;
     font-size: 18px;
+    font-family: "Open Sans", Sans-serif;
     color: #ffffff;
     display: inline;
 }
@@ -320,7 +338,7 @@
 .profile_count_link_preview {
     overflow: hidden;
     line-height: 44px;
-    background-color: #00000080;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 4px 7px 4px 7px;
 }
 
@@ -337,18 +355,49 @@
     height: 40px;
 }
 
-.profile_badges_badge a {
-    text-decoration: blink;
-}
-
 .profile_badges_badge span {
     line-height: 40px;
     font-size: 26px;
-    color: #ffffff80;
-    font-family: "Motiva Sans", Sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "Open Sans", Sans-serif;
     font-weight: 200;
 }
 
+.profile_item_box {
+    margin-left: 0;
+    margin-right: 6px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.profile_item_box .value {
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+    color: #ffffff;
+}
+
+.profile_item_box .label {
+    font-size: 0.5em;
+    color: #9b9b9b;
+}
+
+.error_message {
+    font-size: 34px;
+    font-family: 'Open Sans', sans-serif;
+    color: #ffffff;  
+}
+
+.error_message .error_title {
+    font-size: 1em;
+
+}
+
+.error_message .error_comments {
+    font-size: 0.4em;
+    color: #898989;
+    
+}
 
 /* Avatars */
 

@@ -14,27 +14,30 @@
     <script src="{% static 'csrf.js' %}"></script>
 
     <link href="{% static 'css/steam.css' %}" media="all" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
     
-    <title>Steam Card -- Make Steam, Not War</title>
+    <title>{{ info.basic_info.persona_name }} -- Steam Card</title>
+    <!-- Make Steam, Not War -->
 
 </head>
 
 <body>
     <div class="steam_card_main">
-        <div class="steam_card_background">
+        <div class="steam_card_top">
+            {% if info.basic_info and info.profile_info %}
             <div class="player_avatar">
                 <img src="{{ info.basic_info.avatar_m }}">
             </div>
             <div class="persona_info">
-                <div class="persona_name">
+                <a class="persona_name" href="{{ info.profile_info.profiles_url }}">
                     <span class="actual_persona_name">{{ info.basic_info.persona_name }}</span>
-                </div>
-                <div class="persona_level">
+                </a>
+                <a class="persona_level" href="{{ info.profile_info.badges_link_total }}">
+                    Level 
                     <div class="friendPlayerLevel lvl_{{ info.profile_info.frame_level }}">
                         <span class="friendPlayerLevelNum">{{ info.profile_info.level }}</span>
                     </div>
-                     级
-                </div>
+                </a>
                 <div class="profile_header_summary">
                     <span class="profile_summary">{{ info.profile_info.desc | linebreaksbr }}</span>
                 </div>
@@ -49,14 +52,14 @@
                     {% if info.profile_info.undisplay_badges_count > 0 %}
                     <div class="profile_badges_badge">
                         <a href="{{ info.profile_info.badges_link_total }}">
-                            {% if info.profile_info.undisplay_badges_count >= 100 %}
-                            <span style="font-size: 24px">+{{ info.profile_info.undisplay_badges_count }}</span>
-                            {% elif info.profile_info.undisplay_badges_count >= 1000 %}
-                            <span style="font-size: 20px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% if info.profile_info.undisplay_badges_count >= 100000 %}
+                            <span style="font-size: 14px">+{{ info.profile_info.undisplay_badges_count }}</span>
                             {% elif info.profile_info.undisplay_badges_count >= 10000 %}
                             <span style="font-size: 16px">+{{ info.profile_info.undisplay_badges_count }}</span>
-                            {% elif info.profile_info.undisplay_badges_count >= 100000 %}
-                            <span style="font-size: 14px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% elif info.profile_info.undisplay_badges_count >= 1000 %}
+                            <span style="font-size: 20px">+{{ info.profile_info.undisplay_badges_count }}</span>
+                            {% elif info.profile_info.undisplay_badges_count >= 100 %}
+                            <span style="font-size: 24px">+{{ info.profile_info.undisplay_badges_count }}</span>
                             {% else %}
                             <span>+{{ info.profile_info.undisplay_badges_count }}</span>
                             {% endif %}
@@ -65,7 +68,24 @@
                     {% endif %}
                 </div>
             </div>
-
+            {% else %}
+            <div class="error_message">
+                <div class="error_title">
+                    Ooopps, something went wrong!
+                </div>
+                <div class="error_comments">
+                    maybe you can check your steam id
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="steam_card_bottom">
+        {% for item in info.profile_info.items %}
+            <a class="profile_item_box" href="{{ item.link }}">
+                <div class="value">{{ item.count }}</div>
+                <div class="label">{{ item.title }}</div>
+            </a>
+        {% endfor %}
         </div>
     </div>
 </body>

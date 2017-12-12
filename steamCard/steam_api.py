@@ -15,9 +15,10 @@ from .steam_url_tools import SteamUrlTools
 from .models import SteamKey
 
 class SteamApi:
-    def __init__(self, steam_id):
+    def __init__(self, steam_id, language="en"):
         self.steam_id = steam_id
         self.key = SteamKey.objects.get(admin_id = 1).api_key
+        self.language = language
 
         self.profiles_url = SteamUrlTools.getProfileUrl(self.steam_id,)
 
@@ -70,19 +71,26 @@ class SteamApi:
 
     def getProfileInfo(self):
         try:
-            r = requests.get(self.profiles_url)
+            headers = {'Accept-Language': self.language}
+            r = requests.get(self.profiles_url, headers = headers)
             tree = html.fromstring(r.text)
 
             level_list              = tree.xpath('//div[@class="profile_header_badgeinfo_badge_area"]//span[@class="friendPlayerLevelNum"]/text()')
-            desc_list               = tree.xpath('//div[@class="profile_summary" or @class="profile_summary noexpand"]/text()')
+            desc_list               = tree.xpath('//div[@class="profile_summary" or @class="profile_summary noexpand"]//text()')
             badges_count_list       = tree.xpath('//div[@class="profile_badges"]//span[@class="profile_count_link_total"]/text()')
             badges_link_total_list  = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_count_link ellipsis"]//@href')
             badges_desc_list        = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge " or @class="profile_badges_badge last"]/@data-community-tooltip')
             badges_link_list        = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge " or @class="profile_badges_badge last"]//@href')
             badges_img_list         = tree.xpath('//div[@class="profile_badges"]//div[@class="profile_badges_badge " or @class="profile_badges_badge last"]//img/@src')
 
+            profile_item_list       = tree.xpath('//div[@class="profile_item_links"]/div[@class="profile_count_link ellipsis"]/a')
+            item_link_list          = [x.xpath('@href') for x in profile_item_list]
+            item_title_list         = [x.xpath('span[@class="count_link_label"]//text()') for x in profile_item_list]
+            item_count_list         = [x.xpath('span[@class="profile_count_link_total"]//text()') for x in profile_item_list]
+
             info = {}
-            info['level'] = level_list[0] if len(level_list) else None
+            info['profiles_url'] = self.profiles_url or ''
+            info['level'] = level_list[0] if len(level_list) else ''
 
             def getFrameLevel(level_str):
                 if level_str and level_str.isdigit():
@@ -92,10 +100,17 @@ class SteamApi:
                     return 0
 
             info['frame_level'] = getFrameLevel(info['level'])
-            info['desc']  = '\n'.join(desc_list).strip() if len(desc_list) else []
+
+            desc = []
+            for v in desc_list:
+                if v.strip():
+                    desc.append(v.strip())
+            info['desc']  = '\n'.join(desc).strip() if len(desc) else ''
 
             badges_count_str = badges_count_list[0].strip() if len(badges_count_list) else ''
-            info['badges_count'] = int(badges_count_str) if badges_count_str.isdigit() else 0
+            badges_count_digit_str = badges_count_str.replace(',', '')
+            info['badges_count'] = int(badges_count_digit_str) if badges_count_digit_str.isdigit() else 0
+            info['badges_count_str'] = badges_count_str
 
             info['badges_link_total'] = badges_link_total_list[0] if len(badges_link_total_list) else ''
 
@@ -109,6 +124,19 @@ class SteamApi:
 
             undisplay_badges_count = info['badges_count'] - len(info['badges'])
             info['undisplay_badges_count'] = undisplay_badges_count if undisplay_badges_count > 0 else 0
+
+            info['items'] = []
+            for i in xrange(len(item_title_list)):
+                item = {}
+                if (item_count_list[i]):
+                    count_str = item_count_list[i][0].strip()
+                    digit_str = count_str.replace(',', '')
+                    if digit_str.isdigit() and int(digit_str) > 0:
+                        item['link'] = item_link_list[i][0] if i < len(item_link_list) and len(item_link_list[i]) else ''
+                        item['title'] = item_title_list[i][0].strip() if i < len(item_title_list) and len(item_title_list[i]) else ''
+                        item['count'] = count_str
+
+                        info['items'].append(item)
 
             return info
 
