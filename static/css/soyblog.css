@@ -23,8 +23,12 @@ body {
     right: 50px;
 }
 
+.navbar {
+    border: 0px;
+}
+
 .background { 
-    background-image: url("http://2.pic.9ht.com/up/2016-8/20168101604.jpg");
+    background-color: #222222;
 }
 
 .content {
@@ -32,9 +36,11 @@ body {
 }
 
 .main-content {
-    padding: 70px 50px 75px 50px;
+    padding: 50px 0px 75px 0px;
     background-color: #FFFFFF;
     overflow: hidden;
+    max-width: 1200px;
+    margin: 0px auto;
 }
 
 .main {
