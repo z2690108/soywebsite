@@ -14,6 +14,11 @@ import requests
 from .steam_url_tools import SteamUrlTools
 from .models import SteamKey
 
+proxies = {
+            "http":"socks5://127.0.0.1:1080",
+            "https":"socks5://127.0.0.1:1080"
+          }
+
 class SteamApi:
     def __init__(self, steam_id, language="en"):
         self.steam_id = steam_id
@@ -72,7 +77,7 @@ class SteamApi:
     def getProfileInfo(self):
         try:
             headers = {'Accept-Language': self.language}
-            r = requests.get(self.profiles_url, headers = headers)
+            r = requests.get(self.profiles_url, headers = headers , proxies = proxies)
             tree = html.fromstring(r.text)
 
             level_list              = tree.xpath('//div[@class="profile_header_badgeinfo_badge_area"]//span[@class="friendPlayerLevelNum"]/text()')
