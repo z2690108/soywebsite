@@ -77,7 +77,7 @@ class SteamApi:
     def getProfileInfo(self):
         try:
             headers = {'Accept-Language': self.language}
-            r = requests.get(self.profiles_url, headers = headers , proxies = proxies)
+            r = requests.get(self.profiles_url, headers = headers)
             tree = html.fromstring(r.text)
 
             level_list              = tree.xpath('//div[@class="profile_header_badgeinfo_badge_area"]//span[@class="friendPlayerLevelNum"]/text()')

@@ -1,5 +1,5 @@
 (function(d) {
-  var base = "http://59.110.139.107";
+  var base = "//www.igiari.moe";
   var i, count = 0;
 
   function queryclass(name) {

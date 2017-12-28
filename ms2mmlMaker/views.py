@@ -3,9 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-import sys
-sys.path.append('/data/')
-from ms2mml.ms2mmlMaker import Ms2mmlMaker
+from .mmlMaker import Ms2mmlMaker
 
 import json  
 from django.http import HttpResponse  
