@@ -5,4 +5,4 @@ do
 done
 sleep 1
 
-sudo uwsgi --ini uwsgi.ini
+exec sudo uwsgi --ini uwsgi.ini
