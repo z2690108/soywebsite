@@ -21,10 +21,11 @@ from steamCard import views as steamCard_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', myset_views.home, name='main'),
-    
+    #url(r'^$', myset_views.home, name='main'),
     url(r'^ms2mmlMaker', include('ms2mmlMaker.urls', namespace='ms2mmlMaker')),
     url(r'^blog', include('soyBlog.urls', namespace='soyBlog')),
     url(r'^steamCard', include('steamCard.urls', namespace='steamCard')),
+    url(r'^', include('soyBlog.urls', namespace='soyBlog'), name='main'),
+    
     
 ]

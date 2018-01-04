@@ -27,23 +27,22 @@
         
             <div class="collapse navbar-collapse" id="nav-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li {% ifequal page_info.toggle 'home_page' %}class="active"{% endifequal %}><a href="{% url 'main' %}">HOME<span class="sr-only">(current)</span></a></li>
-                    <li {% ifequal page_info.toggle 'ms2mml_maker' %}class="active"{% endifequal %}><a href="{% url 'ms2mmlMaker:main' %}">MML MAKER</a></li>
-                    <li {% ifequal page_info.toggle 'blog_home' %}class="active"{% endifequal %}><a href="{% url 'soyBlog:main' %}">BLOG</a></li>
-                    <li {% ifequal page_info.toggle 'blog_archives' %}class="active"{% endifequal %}><a href="{% url 'soyBlog:archives' %}">ARCHIVES</a></li>
+                {% ifequal page_info.toggle 'blog_home' %}
+                    <li class="active"><a href="{% url 'soyBlog:main' %}">HOME</a><span class="sr-only">Selected 当前选中</span></li>
+                {% else %}
+                    <li><a href="{% url 'soyBlog:main' %}">HOME</a></li>
+                {% endifequal %}
+                {% ifequal page_info.toggle 'blog_archives' %}
+                    <li class="active"><a href="{% url 'soyBlog:archives' %}">ARCHIVES</a><span class="sr-only">Selected 当前选中</span></li>
+                {% else %}
+                    <li><a href="{% url 'soyBlog:archives' %}">ARCHIVES</a></li>
+                {% endifequal %}
+                {% ifequal page_info.toggle 'ms2mml_maker' %}
+                    <li class="active"><a href="{% url 'ms2mmlMaker:main' %}">MML MAKER</a><span class="sr-only">Selected 当前选中</span></li>
+                {% else %}
+                    <li><a href="{% url 'ms2mmlMaker:main' %}">MML MAKER</a></li>
+                {% endifequal %}
                 </ul>
-<!--                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Login in <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Setting</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Setting</a></li>
-                        </ul>
-                    </li>
-                </ul> -->
             </div>
         </div>
     </nav>
