@@ -38,15 +38,15 @@ def post(request, post_id):
     context['page_info']['toggle'] = 'blog_home'
 
     cur_post = Post.objects.get(id=post_id)
-    prev_post = Post.objects.filter(id__lt=post_id).order_by('-id')[:1] or None
-    next_post = Post.objects.filter(id__gt=post_id).order_by('id')[:1] or None
+    prev_posts = Post.objects.filter(id__lt=post_id).order_by('-id')[:1] or None
+    next_posts = Post.objects.filter(id__gt=post_id).order_by('id')[:1] or None
 
     cur_post.content = safe_markdown(cur_post.content)
 
     context['post'] = cur_post
     context['page_info']['title'] = cur_post.title
-    context['prev_post'] = prev_post
-    context['next_post'] = next_post
+    context['prev_post'] = prev_posts[0] if prev_posts else None
+    context['next_post'] = next_posts[0] if next_posts else None
 
     return render(request, 'soyBlog/post.html', context)
 

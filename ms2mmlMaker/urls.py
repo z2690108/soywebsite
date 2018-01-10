@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', mslmmlMaker_views.home, name='main'),
 
-    url(r'^/result/', mslmmlMaker_views.upload_file, name='upload_file'),
+    url(r'^result/', mslmmlMaker_views.upload_file, name='upload_file'),
 ]

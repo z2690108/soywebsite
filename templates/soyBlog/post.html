@@ -20,8 +20,21 @@
 </h5>
 </div>
 <br>
-</p>{{ post.content }}</p>
+<p>{{ post.content }}</p>
 <hr />
+
+<ul class="pager">
+    {% if next_post %}
+    <li class="previous">
+        <a href="{% url 'soyBlog:post' post_id=next_post.id %}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> {{ next_post.title }}</a>
+    </li>
+    {% endif %}
+    {% if prev_post %}
+    <li class="next">
+        <a href="{% url 'soyBlog:post' post_id=prev_post.id %}">{{ prev_post.title }} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+    </li>
+    {% endif %}
+</ul>
 
 <div id="disqus_thread"></div>
 <script>

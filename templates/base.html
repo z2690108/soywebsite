@@ -9,7 +9,6 @@
                         user-scalable=no",
         charset="utf-8">
 
-    {% load static %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
     <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/solarized_dark.min.css" rel="stylesheet">  
 
@@ -17,6 +16,8 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/fileinput.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.4/js/locales/LANG.js"></script> -->
+
+    {% load static %}
     <script src="{% static 'csrf.js' %}"></script>
 
     {# Load the tag library #}
