@@ -21,7 +21,7 @@ def home(request, page=''):
     post_perpage = 3.0
     page_count = Post.objects.count()
     max_page = ceil(page_count/post_perpage)
-    page = int(page) if page.isdigit() and int(page) > 0 else 1
+    page = page = min(int(page) if page.isdigit() and int(page) > 0 else 1, max_page)
 
     context['posts'] = Post.objects.order_by('-id')[(page - 1) * post_perpage : page * post_perpage]
     for post in context['posts']:
